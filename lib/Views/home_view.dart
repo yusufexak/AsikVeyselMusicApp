@@ -95,13 +95,42 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                 "Kara Toprak",
                 style: context.textTheme.bodyText1,
               ),
-              Slider(
-                max: 25,
-                min: 0,
-                value: 20,
-                onChanged: (s) {},
-                activeColor: context.theme.accentColor,
-                inactiveColor: context.theme.primaryColor.withOpacity(.5),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12),
+                child: Row(
+                  children: [
+                    Text((state is MusicPlay)
+                        ? state.second.toString().split(".").first
+                        : (state is MusicPause)
+                            ? state.second.toString().split(".").first
+                            : ""),
+                    Expanded(
+                      child: Slider(
+                        max: (state is MusicPlay)
+                            ? state.totalSecond.inSeconds.toDouble()
+                            : (state is MusicPause)
+                                ? state.totalSecond.inSeconds.toDouble()
+                                : 0,
+                        value: (state is MusicPlay)
+                            ? state.second.inSeconds.toDouble()
+                            : (state is MusicPause)
+                                ? state.second.inSeconds.toDouble()
+                                : 1,
+                        onChanged: (s) {
+                          context.bloc<MusicCubit>().seekToSeconds(s.toInt());
+                        },
+                        activeColor: context.theme.accentColor,
+                        inactiveColor:
+                            context.theme.primaryColor.withOpacity(.5),
+                      ),
+                    ),
+                    Text((state is MusicPlay)
+                        ? state.totalSecond.toString().split(".").first
+                        : (state is MusicPause)
+                            ? state.totalSecond.toString().split(".").first
+                            : ""),
+                  ],
+                ),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,

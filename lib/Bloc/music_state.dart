@@ -7,9 +7,11 @@ class MusicInitial extends MusicState {
 }
 
 class MusicPlay extends MusicState {
-  const MusicPlay();
+  final Duration totalSecond, second;
+  const MusicPlay(this.totalSecond, this.second);
 }
 
 class MusicPause extends MusicState {
-  const MusicPause();
+  final Duration totalSecond, second;
+  const MusicPause(this.totalSecond, this.second);
 }
