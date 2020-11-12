@@ -6,7 +6,29 @@ import 'package:AsikVeyselMusicApp/Core/Extension/context_extension.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
+  AnimationController _controller;
+  Animation<double> _animation;
+  @override
+  void initState() {
+    super.initState();
+    _controller =
+        AnimationController(vsync: this, duration: Duration(seconds: 30))
+          ..repeat();
+    _animation = Tween<double>(begin: 0, end: 2).animate(_controller);
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<MusicCubit, MusicState>(
@@ -35,7 +57,31 @@ class Home extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.all(20.0),
-                child: Image.asset(AppConstansts.recordImage),
+                child: RotationTransition(
+                    turns: _animation,
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        Center(child: Image.asset(AppConstansts.recordImage)),
+                        Center(
+                          child: ClipOval(
+                            child: SizedBox(
+                                height: 180,
+                                width: 180,
+                                child: Image.asset(
+                                  AppConstansts.veyselImage,
+                                  fit: BoxFit.fill,
+                                )),
+                          ),
+                        ),
+                        Center(
+                          child: CircleAvatar(
+                            backgroundColor: Colors.white,
+                            radius: 12,
+                          ),
+                        )
+                      ],
+                    )),
               ),
               Text(
                 "Aşık Veysel",
@@ -74,8 +120,10 @@ class Home extends StatelessWidget {
                         onPressed: () {
                           if (state is MusicPlay) {
                             context.bloc<MusicCubit>().pauseMusic();
+                            _controller.stop();
                           } else {
                             context.bloc<MusicCubit>().playMusic();
+                            _controller.repeat();
                           }
                         }),
                   ),
