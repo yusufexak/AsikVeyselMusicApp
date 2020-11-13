@@ -1,16 +1,27 @@
 # AsikVeyselMusicApp
 
-A new Flutter project.
+## Image
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+![image](https://raw.githubusercontent.com/yusufexak/AsikVeyselMusicApp/dev/assets/images/music.gif)
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Features & State Management
+- Cubit
+- Music Play&Pause
+- Record Rotate Animation
+
+## Packages
+
+```ruby
+  google_fonts: ^1.1.1
+  flutter_svg: ^0.19.1
+  flutter_bloc: ^6.1.1
+  audioplayers: ^0.16.2
+```
+
+## Contact
+
+- Yusuf Sirin – [Linkedin](https://www.linkedin.com/in/yusufexak/)
+- Mail : yusufsirinn@gmail.com
