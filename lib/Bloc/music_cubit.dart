@@ -1,4 +1,5 @@
 import 'package:AsikVeyselMusicApp/Bloc/music_state.dart';
+import 'package:AsikVeyselMusicApp/Core/Constants/App/app_constanst.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:audioplayers/audio_cache.dart';
 import 'package:audioplayers/audioplayers.dart';
@@ -17,7 +18,7 @@ class MusicCubit extends Cubit<MusicState> {
   }
 
   playMusic() {
-    _cache.play("sound/Asik-Veysel-Benim-Sadik-Yarim-Kara-Topraktir.mp3");
+    _cache.play(AppConstansts.karaToprakMusic);
     _audioPlayer.onDurationChanged.listen((event) {
       _duration = event;
     });

@@ -38,6 +38,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
           appBar: AppBar(
             centerTitle: true,
             elevation: 0,
+            backgroundColor: context.theme.backgroundColor,
             excludeHeaderSemantics: true,
             leading: Padding(
               padding: EdgeInsets.all(10),
@@ -47,7 +48,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
               ),
             ),
             title: Text(
-              "Asik Veysel",
+              AppConstansts.music,
               style: context.textTheme.headline4
                   .copyWith(color: context.theme.accentColor),
             ),
@@ -55,36 +56,38 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
           body: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: RotationTransition(
-                    turns: _animation,
-                    child: Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        Center(child: Image.asset(AppConstansts.recordImage)),
-                        Center(
-                          child: ClipOval(
-                            child: SizedBox(
-                                height: 180,
-                                width: 180,
-                                child: Image.asset(
-                                  AppConstansts.veyselImage,
-                                  fit: BoxFit.fill,
-                                )),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: RotationTransition(
+                      turns: _animation,
+                      child: Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          Center(child: Image.asset(AppConstansts.recordImage)),
+                          Center(
+                            child: ClipOval(
+                              child: SizedBox(
+                                  height: 180,
+                                  width: 180,
+                                  child: Image.asset(
+                                    AppConstansts.veyselImage,
+                                    fit: BoxFit.fill,
+                                  )),
+                            ),
                           ),
-                        ),
-                        Center(
-                          child: CircleAvatar(
-                            backgroundColor: Colors.white,
-                            radius: 12,
-                          ),
-                        )
-                      ],
-                    )),
+                          Center(
+                            child: CircleAvatar(
+                              backgroundColor: Colors.white,
+                              radius: 12,
+                            ),
+                          )
+                        ],
+                      )),
+                ),
               ),
               Text(
-                "Aşık Veysel",
+                AppConstansts.musicName,
                 style: context.textTheme.headline5
                     .copyWith(fontWeight: FontWeight.bold),
               ),
@@ -92,7 +95,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                 height: 10,
               ),
               Text(
-                "Kara Toprak",
+                AppConstansts.musicSubname,
                 style: context.textTheme.bodyText1,
               ),
               Padding(
